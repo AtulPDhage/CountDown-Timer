@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        input::placeholder
+        {
+            color:black;
+            font-size: 15px;
+            
+          
+        }
+        input{
+            height: 30px;
+            width: 300px;
+            margin: 3px;
+            padding: 2px;
+            border: 1px solid black;
+            border-radius: 5px;
+            
+        }
+
+
+        #sbt{
+           border: 1px solid black;
+           border-radius: 20px;
+
+        }
+        #sbt:hover{
+            background-color: black;
+            cursor: pointer;
+            color: white;
+        }
+        #display{
+          font-size: 200px;
+
+
+        }
+    </style>
+</head>
+<body style="background-color: rgb(30, 50, 84); color: aliceblue; " >
+    <div style="display: flex; justify-content: center; align-items: center; ">
+        <div style="margin-right: 10px;">
+            <h1>Countdown Timer</h1>
+        </div>
+       
+    </div>
+    <div>
+        <div style="display: flex; justify-content: center; ">
+            <input type="number" id="in" placeholder="Enter the timer here in seconds "> 
+            <button id="sbt">Start</button>
+            </div>
+    </div>
+   
+    
+<div  style=" display: flex; justify-content: center;">
+    <h1 id="display">5</h1>
+</div>  
+</body>
+<script>
+    let inputField = document.getElementById('in');
+    let display = document.getElementById('display');
+    let timer;
+
+    function startTimer() {
+        let value = parseInt(inputField.value);  // Get the input value and convert it to a number
+        if (isNaN(value)) {
+            alert('Please enter a valid number');
+            return;
+        }
+        display.textContent = value;  // Display the input number
+        clearInterval(timer);  // Clear any existing timers before starting a new one
+
+        function printer() {
+            if (value <= 0) {
+                clearInterval(timer);  // Stop the timer when value reaches 0
+            } else {
+                display.textContent = --value;  // Decrement and update the display
+            }
+        }
+
+        timer = setInterval(printer, 1000);  // Start the countdown
+    }
+
+    document.getElementById('sbt').addEventListener('click', startTimer);  // Attach the event listener to the button
+</script>
+</html>
